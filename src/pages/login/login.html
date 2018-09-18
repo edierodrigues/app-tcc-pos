@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><ion-icon name="contact"></ion-icon> Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="credential.aluno_email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="credential.password"></ion-input>
+    </ion-item>
+    <button ion-button icon-start ios-contact block (click)="login()">
+      <ion-icon name="contact"></ion-icon>
+      Entrar
+    </button>
+    <button ion-button icon-start block outline>
+      <ion-icon ios="ios-school" md="md-school"></ion-icon>
+      Matricule-se
+    </button>
+  </ion-list>
+</ion-content>

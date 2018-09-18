@@ -8,11 +8,28 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-fab top right edge>
+    <button ion-fab mini><ion-icon name="arrow-dropdown"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-button clearion-fab color="light" (click)=logout()><ion-icon name="md-log-out"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/user-no-image.png">
+      </ion-thumbnail>
+      <h2>Antônio R. Neiva</h2>
+    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>Curso</ion-label>
+        <ion-select >
+          <ion-option selected value="nes">Engenharia de Software</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  <ngx-datatable class="fullscreen bootstrap" [rows]="rows" [columnMode]="'force'" [sortType]="'multi'" [reorderable]="false">
+    <ngx-datatable-column name="Atividades"></ngx-datatable-column>
+    <ngx-datatable-column name="Nota"></ngx-datatable-column>
+  </ngx-datatable>
 </ion-content>
