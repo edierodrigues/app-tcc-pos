@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage'
 @Injectable()
 export class AuthProvider {
 
-  private url: string = 'http://127.0.0.1:8000/api';
+  private url: string = 'https://tcc-edvaldo.herokuapp.com/api';
 
   constructor(
     public http: Http,
