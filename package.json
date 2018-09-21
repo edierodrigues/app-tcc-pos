@@ -39,7 +39,7 @@
   },
   "devDependencies": {
   },
-  "description": "An Ionic project",
+  "description": "Protótipo TCC",
   "config": {
     "ionic_sass": "./config/sass.config.js",
     "ionic_copy": "./config/copy.config.js"
