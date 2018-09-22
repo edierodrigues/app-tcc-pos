@@ -1,0 +1,7 @@
+{
+    "name": "tccApp",
+    "description": "Protótipo TCC",
+    "repository": "https://github.com/edierodrigues/app-tcc-pos",
+    "logo": "http://pereless360.com/img/SP/Ghost/360-logo-white.png",
+    "keywords": ["ionic2", "heroku"]
+}
