@@ -9,14 +9,14 @@ import { LoginPage } from '../login/login';
 })
 export class HomePage {
 
-  private rows = [
+  public rows = [
     { atividades: 'Avaliação I', nota: '9.2/10.0'},
     { atividades: 'Avaliação II', nota: '15.3/20.0'},
     { atividades: 'Avaliação III', nota: '13.8/15.0'},
     { atividades: 'Trabalho I', nota: '4.1/5.0'},
     { atividades: 'Trabalho II', nota: '2.7/3.0'}
   ];
-  private columns = [
+  public columns = [
     { name:'Atividades'},
     { name: 'Nota' }
   ];
