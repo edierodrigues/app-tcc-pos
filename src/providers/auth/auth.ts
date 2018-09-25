@@ -38,6 +38,22 @@ export class AuthProvider {
   }
 
   logout() {
-    this.storage.remove('token');
+    let http = this.http;
+    let url  = this.url;
+    let storage  = this.storage;
+    return storage.get('token').then(function (token) {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Authorization', 'Bearer '+ token);
+
+      let options = new RequestOptions({headers: headers});
+      return http.post(url + '/auth/logout', {}, options)
+      .map(res => {return res.json()})
+      .toPromise()
+      .then(res => {
+        storage.remove('token');
+        return true;
+      });
+    });
   }
 }

@@ -43,7 +43,13 @@ export class HomePage {
       message: 'Você está prestes a sair do aplicativo, tem certeza?',
       buttons: [
         { text: 'Não', handler: () => {} },
-        { text: 'Sim', handler: () => { authService.logout(); navCtrl.setRoot(LoginPage);}}
+        { text: 'Sim', handler: () => {
+          authService.logout().then(function (deslogado) {
+            if (deslogado) {
+              navCtrl.setRoot(LoginPage);
+            }
+          }); 
+        }}
       ]
     });
     confirm.present();
