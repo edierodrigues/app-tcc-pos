@@ -108,8 +108,13 @@ var AuthProvider = /** @class */ (function () {
     function AuthProvider(http, storage) {
         this.http = http;
         this.storage = storage;
+        // url da api do web server
         this.url = 'https://tcc-edvaldo.herokuapp.com/api';
     }
+    /**
+     * Tenta realizar login usando as credenciais fornecidas
+     * @param credentials
+     */
     AuthProvider.prototype.login = function (credentials) {
         var _this = this;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
@@ -125,11 +130,18 @@ var AuthProvider = /** @class */ (function () {
             }, reject);
         });
     };
+    /**
+     * verifica se usuário está logado,
+     * checando se tem um token setado no storage do navegador
+     */
     AuthProvider.prototype.userIsLogged = function () {
         return this.storage.get('token').then(function (val) {
             return val || false;
         });
     };
+    /**
+     * realiza logout do usuário e redireciona para pagina de login
+     */
     AuthProvider.prototype.logout = function () {
         var http = this.http;
         var url = this.url;
