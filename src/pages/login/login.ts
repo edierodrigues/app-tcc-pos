@@ -29,6 +29,7 @@ export class LoginPage {
       content: "Aguarde, Acessando Sistema",
       duration: 3000
     });
+    let autenticando = this.loadingCtrl.create({content: 'Autenticando...'});
     const alertFalhaAutenticacao = this.alertCtrl.create({
       title: 'Falha durante autenticação!',
       subTitle: 'Não foi possível logar com as informações fornecidas, verifique-as e tente novamente!',
@@ -40,8 +41,10 @@ export class LoginPage {
       duration: 3000
     });
     let navCtrl = this.navCtrl;
+    autenticando.present();
     this.authService.login(this.credential)
     .then(() => {
+      autenticando.dismiss();
       this.authService.userIsLogged()
       .then(function (logado) {
         if (logado) {
@@ -52,7 +55,7 @@ export class LoginPage {
           }, 3000);
         }
       });
-    }, () => { alertFalhaAutenticacao.present();});
+    }, () => { alertFalhaAutenticacao.present(); autenticando.dismiss();});
   }
 
 }

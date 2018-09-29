@@ -112,7 +112,9 @@ var AuthProvider = /** @class */ (function () {
         this.url = 'https://tcc-edvaldo.herokuapp.com/api';
     }
     /**
-     * Tenta realizar login usando as credenciais fornecidas
+     * Tenta realizar login usando as credenciais fornecidas,
+     * se der certo armazenna o token retornado para futuras requisições
+     * no websrver
      * @param credentials
      */
     AuthProvider.prototype.login = function (credentials) {
@@ -213,6 +215,7 @@ var LoginPage = /** @class */ (function () {
             content: "Aguarde, Acessando Sistema",
             duration: 3000
         });
+        var autenticando = this.loadingCtrl.create({ content: 'Autenticando...' });
         var alertFalhaAutenticacao = this.alertCtrl.create({
             title: 'Falha durante autenticação!',
             subTitle: 'Não foi possível logar com as informações fornecidas, verifique-as e tente novamente!',
@@ -224,8 +227,10 @@ var LoginPage = /** @class */ (function () {
             duration: 3000
         });
         var navCtrl = this.navCtrl;
+        autenticando.present();
         this.authService.login(this.credential)
             .then(function () {
+            autenticando.dismiss();
             _this.authService.userIsLogged()
                 .then(function (logado) {
                 if (logado) {
@@ -236,20 +241,16 @@ var LoginPage = /** @class */ (function () {
                     }, 3000);
                 }
             });
-        }, function () { alertFalhaAutenticacao.present(); });
+        }, function () { alertFalhaAutenticacao.present(); autenticando.dismiss(); });
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-login',template:/*ion-inline-start:"/Users/ferreira/Apps/tcc_app/src/pages/login/login.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title><ion-icon name="contact"></ion-icon> Login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n<ion-content padding>\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" [(ngModel)]="credential.aluno_email"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label floating>Senha</ion-label>\n      <ion-input type="password" [(ngModel)]="credential.password"></ion-input>\n    </ion-item>\n    <button ion-button icon-start ios-contact block (click)="login()">\n      <ion-icon name="contact"></ion-icon>\n      Entrar\n    </button>\n    <button ion-button icon-start block outline>\n      <ion-icon ios="ios-school" md="md-school"></ion-icon>\n      Matricule-se\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/ferreira/Apps/tcc_app/src/pages/login/login.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]) === "function" && _f || Object])
     ], LoginPage);
     return LoginPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=login.js.map

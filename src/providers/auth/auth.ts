@@ -17,7 +17,9 @@ export class AuthProvider {
   }
   
   /**
-   * Tenta realizar login usando as credenciais fornecidas
+   * Tenta realizar login usando as credenciais fornecidas,
+   * se der certo armazenna o token retornado para futuras requisições
+   * no websrver
    * @param credentials 
    */
   login(credentials) {
