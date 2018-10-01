@@ -17,6 +17,7 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+    // paginas exibidas no menu
     this.pages = [
       { title: 'Home', component: HomePage }
     ];
@@ -30,6 +31,7 @@ export class MyApp {
     });
   }
 
+  // seta pagina principal
   openPage(page) {
     this.nav.setRoot(page.component);
   }

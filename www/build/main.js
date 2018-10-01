@@ -27,6 +27,7 @@ var HomePage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.authService = authService;
         this.alertCtrl = alertCtrl;
+        // atividades listadas na pagina home
         this.rows = [
             { atividades: 'Avaliação I', nota: '9.2/10.0' },
             { atividades: 'Avaliação II', nota: '15.3/20.0' },
@@ -39,11 +40,16 @@ var HomePage = /** @class */ (function () {
             { name: 'Nota' }
         ];
     }
+    /**
+     * metodo executado antes de carregar a pagina,
+     * verificando se usuario esta logado
+    */
     HomePage.prototype.ionViewCanEnter = function () {
         return this.authService.userIsLogged();
     };
-    HomePage.prototype.ionViewDidEnter = function () {
-    };
+    /**
+     * encerra sessao do usuario no web service e redireciona para pagina de login
+     */
     HomePage.prototype.logout = function () {
         var authService = this.authService;
         var navCtrl = this.navCtrl;
@@ -204,11 +210,17 @@ var LoginPage = /** @class */ (function () {
         this.authService = authService;
         this.alertCtrl = alertCtrl;
         this.toastCtrl = toastCtrl;
+        // recebe as informacoes fornecidas pelo usuario
         this.credential = {
             aluno_email: '',
             password: ''
         };
     }
+    /**
+     * metodo de login,
+     * caso credenciais sejam validadas pelo web service redireciona para pagina home
+     * em caso de falha exibe mensagem de erro
+     */
     LoginPage.prototype.login = function () {
         var _this = this;
         var loading = this.loadingCtrl.create({
@@ -247,10 +259,14 @@ var LoginPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-login',template:/*ion-inline-start:"/Users/ferreira/Apps/tcc_app/src/pages/login/login.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title><ion-icon name="contact"></ion-icon> Login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n<ion-content padding>\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" [(ngModel)]="credential.aluno_email"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label floating>Senha</ion-label>\n      <ion-input type="password" [(ngModel)]="credential.password"></ion-input>\n    </ion-item>\n    <button ion-button icon-start ios-contact block (click)="login()">\n      <ion-icon name="contact"></ion-icon>\n      Entrar\n    </button>\n    <button ion-button icon-start block outline>\n      <ion-icon ios="ios-school" md="md-school"></ion-icon>\n      Matricule-se\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/ferreira/Apps/tcc_app/src/pages/login/login.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]) === "function" && _f || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]])
     ], LoginPage);
     return LoginPage;
-    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=login.js.map
@@ -417,6 +433,7 @@ var MyApp = /** @class */ (function () {
         this.splashScreen = splashScreen;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_login_login__["a" /* LoginPage */];
         this.initializeApp();
+        // paginas exibidas no menu
         this.pages = [
             { title: 'Home', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] }
         ];
@@ -428,6 +445,7 @@ var MyApp = /** @class */ (function () {
             _this.splashScreen.hide();
         });
     };
+    // seta pagina principal
     MyApp.prototype.openPage = function (page) {
         this.nav.setRoot(page.component);
     };
@@ -436,7 +454,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/ferreira/Apps/tcc_app/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/ferreira/Apps/tcc_app/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/ferreira/Apps/tcc_app/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/ferreira/Apps/tcc_app/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);

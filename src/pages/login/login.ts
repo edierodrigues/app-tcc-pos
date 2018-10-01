@@ -9,6 +9,7 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
+  // recebe as informacoes fornecidas pelo usuario
   private credential: Object = {
     aluno_email: '',
     password: ''
@@ -24,6 +25,11 @@ export class LoginPage {
   ) {
   }
 
+  /**
+   * metodo de login,
+   * caso credenciais sejam validadas pelo web service redireciona para pagina home
+   * em caso de falha exibe mensagem de erro
+   */
   login() {
     const loading = this.loadingCtrl.create({
       content: "Aguarde, Acessando Sistema",

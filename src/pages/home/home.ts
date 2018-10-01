@@ -9,6 +9,7 @@ import { LoginPage } from '../login/login';
 })
 export class HomePage {
 
+  // atividades listadas na pagina home
   public rows = [
     { atividades: 'Avaliação I', nota: '9.2/10.0'},
     { atividades: 'Avaliação II', nota: '15.3/20.0'},
@@ -28,13 +29,17 @@ export class HomePage {
   ) {
   }
 
+  /**
+   * metodo executado antes de carregar a pagina,
+   * verificando se usuario esta logado
+  */
   ionViewCanEnter() {
     return this.authService.userIsLogged();
   }
-  ionViewDidEnter() {
-    
-  }
 
+  /**
+   * encerra sessao do usuario no web service e redireciona para pagina de login
+   */
   logout() {
     let authService = this.authService;
     let navCtrl     = this.navCtrl;
